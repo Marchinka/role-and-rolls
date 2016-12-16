@@ -37,10 +37,14 @@ socket.on('message', function (sessionId) {
 
 socket.on('player list cleaned', function () {
   $('#roll-button').prop("disabled", false);
+  $('#roll-button').addClass("btn-big-red");
+  $('#roll-button').removeClass("btn-big-disabled");  
 });
 
 $('#roll-button').click(function() {
   $('#roll-button').prop("disabled", true);
+  $('#roll-button').removeClass("btn-big-red");
+  $('#roll-button').addClass("btn-big-disabled");
   socket.emit('player rolling', currentPlayerInfo); 
 });
 
@@ -61,8 +65,12 @@ var getPlayerInfo = function () {
     if(playerInfo && playerInfo.initiativeRoll) {
       updateRollResult(playerInfo);
       $('#roll-button').prop("disabled", true);
+      $('#roll-button').removeClass("btn-big-red");
+      $('#roll-button').addClass("btn-big-disabled");
     } else {
       $('#roll-button').prop("disabled", false);
+      $('#roll-button').addClass("btn-big-red");
+      $('#roll-button').removeClass("btn-big-disabled");
     }
   });
 };
