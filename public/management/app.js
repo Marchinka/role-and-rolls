@@ -5,7 +5,7 @@ var refreshPlayerList = function (playerList){
     for (var i = 0; i < playerList.length; i++) {
       player = playerList[i];
       var roll = player.initiativeRoll;
-      var text = roll + " - " + player.username;
+      var text = roll + " - " + player.playerName;
       var li = $("<li></li>");
 
       if (player.isNpc) {
@@ -36,7 +36,7 @@ $('#clear-button').click(function() {
 $('#new-npc-form').submit(function(e) {
   e.preventDefault();
   var npcInfo = {
-    username: $('#npc-name').val(),
+    playerName: $('#npc-name').val(),
     initiativeModifier: $('#npc-inititive-modifier').val(),
     ac: $('#npc-ac').val(),
     isNpc: true

@@ -66,7 +66,7 @@ var addPlayerToListIfNotPresent = function(playerList, playerInfo) {
 
   for (var i = 0; i < playerList.length; i++) {
     player = playerList[i];
-    if (player.username === playerInfo.username) {
+    if (player.playerName === playerInfo.playerName) {
       if (!player.initiativeRoll) {
         playerList[i] = playerInfo;
       }
@@ -92,7 +92,7 @@ var orderListByInitiativeRolls = function (playerList) {
 var getPlayerFromList = function(playerList, name) {
   for (var i = 0; i < playerList.length; i++) {
     player = playerList[i];
-    if (player.username === name) {
+    if (player.playerName === name) {
       return player;
     }
   } 

@@ -7,11 +7,11 @@ var previousValue = "";
 if(isStorageSupported) {
   previousValue = localStorage.getItem("characterName") || "";
 }
-var username = prompt('Enter your character name:', previousValue);
+var playerName = prompt('Enter your character name:', previousValue);
 if(isStorageSupported) {
-  localStorage.setItem("characterName", username);
+  localStorage.setItem("characterName", playerName);
 }
-$('#player-name').text(username);
+$('#player-name').text(playerName);
 
 var previousValue = 0;
 if(isStorageSupported) {
@@ -24,7 +24,7 @@ if(isStorageSupported) {
 }
 
 var currentPlayerInfo = {
-  username: username,
+  playerName: playerName,
   initiativeModifier: initiativeModifier
 };
 
@@ -51,7 +51,7 @@ var updateRollResult = function(playerInfo) {
 socket.on('my roll result', updateRollResult);
 
 var getPlayerInfo = function () {
-  var url = "/Player/Roll/" + currentPlayerInfo.username;
+  var url = "/Player/Roll/" + currentPlayerInfo.playerName;
   $.ajax({
     url: url,
     type: 'GET',
