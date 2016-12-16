@@ -18,7 +18,7 @@ if(isStorageSupported) {
   previousValue = localStorage.getItem("initiativeModifier") || 0;
 }
 
-var initiativeModifier = prompt('Enter your modifier:', previousValue);
+var initiativeModifier = prompt('Enter your initiative modifier:', previousValue);
 if(isStorageSupported) {
   localStorage.setItem("initiativeModifier", initiativeModifier);
 }
