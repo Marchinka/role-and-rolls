@@ -47,7 +47,7 @@ $('#roll-button').click(function() {
 
 var updateRollResult = function(playerInfo) { 
   $('#roll-result').html(playerInfo.initiativeRoll); 
-  $('#roll-result-partial').html(playerInfo.diceResult + " + " + playerInfo.initiativeModifier); 
+  $('#roll-result-partial').html(playerInfo.diceResult + " + " + playerInfo.initiativeModifier + " ="); 
 };
 
 var cleanRollResult = function(playerInfo) { 
