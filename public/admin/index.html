@@ -27,8 +27,6 @@
     <style type="text/css">
       body {
         font-family: 'Roboto', sans-serif;
-        font-size: 20px;
-        background-color: #bfbfbf;
       }
       h1 {
         color: #C63702;
@@ -54,7 +52,7 @@
         </div>
       </form>
 
-      <hr/>
+      <br>
 
       <table class="table" ng-show="initiativeRolls && initiativeRolls.length > 0">
         <thead>
@@ -73,7 +71,11 @@
         </tbody>
       </table>
 
-      <hr/>
+      <div ng-show="!initiativeRolls || initiativeRolls.length === 0" class="alert alert-danger" role="alert">
+        No character has rolled in this session.
+      </div>
+
+      <br>
 
       <button class="btn btn-danger btn-lg" ng-click="clearInitiativeRolls()">New Rolling Session</button>
       <button class="btn btn-default btn-lg" ng-click="getCurrentInitiativeRolls()">Refresh</button>
