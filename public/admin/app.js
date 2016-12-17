@@ -55,7 +55,7 @@ module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
       ac: $scope.input.ac,
       isNpc: true
     };
-    $socketMediator.emit('player rolling', npcInfo); 
+    $socketMediator.emit('player rolling', npcInfo);
   };
 
   setFormDefaults();
@@ -69,7 +69,7 @@ module.factory('$socketMediator', function() {
         socket.on(eventName, callback);
       },
       emit: function (eventName, obj) {
-        socket.on(eventName, obj);
+        socket.emit(eventName, obj);
       }      
     };
     return mediator; 
@@ -93,75 +93,3 @@ var refreshPlayerList = function (playerList){
     }; 
     setNpcDefaultName(playerList.length);
 };
-
-socket.on('added player roll', refreshPlayerList);
-
-socket.on('player list cleaned', function () {
-  refreshPlayerList([]);
-});
-
-$('#clear-button').click(function() {
-  $.ajax({
-    url: '/Player/Clean',
-    type: 'POST',
-    dataType: 'json',
-    data: {},
-  }).done(refreshPlayerList);
-});
-
-$('#new-npc-form').submit(function(e) {
-  e.preventDefault();
-  var npcInfo = {
-    playerName: $('#npc-name').val(),
-    initiativeModifier: $('#npc-inititive-modifier').val(),
-    ac: $('#npc-ac').val(),
-    isNpc: true
-  };
-  socket.emit('player rolling', npcInfo); 
-});
-
-$('#ac-minus').click(function(e) {
-  e.preventDefault();
-  var value = $('#npc-ac').val(); 
-  $('#npc-ac').val(--value); 
-});
-
-$('#ac-plus').click(function(e) {
-  e.preventDefault();
-  var value = $('#npc-ac').val(); 
-  $('#npc-ac').val(++value); 
-});
-
-$('#initiative-minus').click(function(e) {
-  e.preventDefault();
-  var value = $('#npc-inititive-modifier').val(); 
-  $('#npc-inititive-modifier').val(--value); 
-});
-
-$('#initiative-plus').click(function(e) {
-  e.preventDefault();
-  var value = $('#npc-inititive-modifier').val(); 
-  $('#npc-inititive-modifier').val(++value); 
-});
-
-var setNpcDefaultName = function (numberOfCharactersInList) {
-  $('#npc-name').val("Character " + (++numberOfCharactersInList));
-};
-
-setNpcDefaultName(0);
-
-var refreshRollList = function () {
-  $.ajax({
-    url: '/Player/List',
-    type: 'GET',
-    dataType: 'json',
-    data: {},
-  }).done(refreshPlayerList);
-};
-
-refreshRollList();
-
-$('#refresh-button').click(function(e) {
-  e.preventDefault();
-  refreshRollList();
-});
