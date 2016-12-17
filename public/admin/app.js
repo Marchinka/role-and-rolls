@@ -56,6 +56,22 @@ module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
     $socketMediator.emit('player rolling', npcInfo);
   };
 
+  $scope.minusAc = function () {
+    $scope.input.ac--;
+  };
+
+  $scope.plusAc = function () {
+    $scope.input.ac++;
+  };
+
+  $scope.minusInitiative = function () {
+    $scope.input.initiativeModifier--;
+  };
+
+  $scope.plusInitiative = function () {
+    $scope.input.initiativeModifier++;
+  };
+
   setFormDefaults();
   $scope.getCurrentInitiativeRolls();
 });
