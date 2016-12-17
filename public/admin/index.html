@@ -44,7 +44,7 @@
 
       <form id="new-npc-form" ng-submit="rollNewNpc()" class="row">
         <div class="col-md-3">
-          <input type="text" placeholder="NPC name" ng-model="input.playerName" class="form-control" ng-focus="clearName()" ng-blur="setFormDefaults()"/>
+          <input type="text" placeholder="NPC name" ng-model="input.playerName" class="form-control" ng-focus="clearName()" ng-blur="fixName()"/>
         </div>
         <div class="col-md-3">
           <input type="number" value="0" placeholder="NPC initiative" ng-model="input.initiativeModifier" class="form-control"/>

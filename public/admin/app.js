@@ -1,7 +1,7 @@
 var module = angular.module("admin", []);
 
 module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
-  $scope.setFormDefaults = function () {
+  var setFormDefaults = function () {
     var numberOfRolls = $scope.initiativeRolls ? $scope.initiativeRolls.length : 0;
 
     $scope.input = {
@@ -15,7 +15,7 @@ module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
 
   var refreshInitiativeRolls = function (initiativeRolls){ 
     $scope.initiativeRolls = initiativeRolls;
-    $scope.setFormDefaults();
+    setFormDefaults();
   };
 
   $socketMediator.on('added player roll', function (initiativeRolls) {
@@ -60,6 +60,10 @@ module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
     $scope.input.playerName = undefined;
   };
 
+  $scope.fixName = function () {
+    if(!$scope.input.playerName) setFormDefaults();
+  };
+
   $scope.minusAc = function () {
     $scope.input.ac--;
   };
@@ -76,7 +80,7 @@ module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
     $scope.input.initiativeModifier++;
   };
 
-  $scope.setFormDefaults();
+  setFormDefaults();
   $scope.getCurrentInitiativeRolls();
 });
 
@@ -92,22 +96,3 @@ module.factory('$socketMediator', function() {
     };
     return mediator; 
  });
-var socket = io();
-
-var refreshPlayerList = function (playerList){ 
-    $('#initiatives-rolls').html(''); 
-    for (var i = 0; i < playerList.length; i++) {
-      player = playerList[i];
-      var roll = player.initiativeRoll;
-      var text = roll + " - " + player.playerName;
-      var li = $("<li></li>");
-
-      if (player.isNpc) {
-        var ac = player.ac;
-        text = text + "; AC:  " + player.ac;
-      }
-      li.text(text);
-      $('#initiatives-rolls').append(li);
-    }; 
-    setNpcDefaultName(playerList.length);
-};
