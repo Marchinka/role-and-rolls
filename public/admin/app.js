@@ -11,9 +11,7 @@ module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
     };
   };
 
-  $scope.initiativeRolls = [
-    {playerName:"Ciccio2",initiativeModifier:"5",sessionId:"0wGaEZlNs53wSck4AAAK",diceResult:10,initiativeRoll:15}
-  ];
+  $scope.initiativeRolls = [];
 
   var refreshInitiativeRolls = function (initiativeRolls){ 
     $scope.initiativeRolls = initiativeRolls;
