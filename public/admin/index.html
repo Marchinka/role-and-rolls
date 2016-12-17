@@ -67,15 +67,26 @@
         <thead>
           <tr>
             <th>Initiative Roll</th>
+            <th>Type</th>
             <th>Player Name</th>
             <th>A.C.</th>
           </tr>
         </thead>
         <tbody>
           <tr  ng-repeat="roll in initiativeRolls">
-            <td><span class="badge">{{roll.initiativeRoll}}</span></td>
-            <td>{{roll.playerName}}</td>
-            <td>{{roll.ac}}</td>
+            <td>{{roll.initiativeRoll}}</td>
+            <td>
+              <span class="label label-default" ng-show="roll.isNpc">
+                NPC
+              </span>
+              <span class="label label-danger" ng-show="!roll.isNpc">
+                PC
+              </span>
+            </td>
+            <td>
+              {{roll.playerName}}
+            </td>
+            <td>{{roll.ac || '??'}}</td>
           </tr>
         </tbody>
       </table>
