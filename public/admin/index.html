@@ -30,6 +30,9 @@
       }
       h1 {
         color: #C63702;
+      }
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
       }      
     </style>
   </head> 
@@ -56,7 +59,7 @@
 
       <br>
 
-      <table class="table" ng-show="initiativeRolls && initiativeRolls.length > 0">
+      <table class="table" ng-show="initiativeRolls && initiativeRolls.length > 0" ng-cloak>
         <thead>
           <tr>
             <th>Initiative Roll</th>
@@ -76,8 +79,6 @@
       <div ng-show="!initiativeRolls || initiativeRolls.length === 0" class="alert alert-danger" role="alert">
         No character has rolled in this session.
       </div>
-
-      <br>
 
       <button class="btn btn-danger" ng-click="clearInitiativeRolls()">New Rolling Session</button>
       <button class="btn btn-default" ng-click="getCurrentInitiativeRolls()">Refresh</button>
