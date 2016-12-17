@@ -39,8 +39,7 @@
    "density": "4.0"
   }
  ],
-  "display": "fullscreen",
-  "orientation": "portrait",
+  "display": "standalone",
   "background_color": "#b30000",
   "theme_color": "#b30000"
 }
