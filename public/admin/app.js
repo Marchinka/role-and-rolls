@@ -1,7 +1,7 @@
 var module = angular.module("admin", []);
 
 module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
-  var setFormDefaults = function () {
+  $scope.setFormDefaults = function () {
     var numberOfRolls = $scope.initiativeRolls ? $scope.initiativeRolls.length : 0;
 
     $scope.input = {
@@ -15,7 +15,7 @@ module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
 
   var refreshInitiativeRolls = function (initiativeRolls){ 
     $scope.initiativeRolls = initiativeRolls;
-    setFormDefaults();
+    $scope.setFormDefaults();
   };
 
   $socketMediator.on('added player roll', function (initiativeRolls) {
@@ -56,6 +56,10 @@ module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
     $socketMediator.emit('player rolling', npcInfo);
   };
 
+  $scope.clearName = function () {
+    $scope.input.playerName = undefined;
+  };
+
   $scope.minusAc = function () {
     $scope.input.ac--;
   };
@@ -72,7 +76,7 @@ module.controller("adminCtrl", function ($scope, $socketMediator, $http) {
     $scope.input.initiativeModifier++;
   };
 
-  setFormDefaults();
+  $scope.setFormDefaults();
   $scope.getCurrentInitiativeRolls();
 });
 
